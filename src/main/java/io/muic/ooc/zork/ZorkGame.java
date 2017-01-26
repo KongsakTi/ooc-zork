@@ -6,6 +6,7 @@ import java.util.Scanner;
  * Created by gigadot on 12-Jan-17.
  */
 public class ZorkGame {
+
     public void start() {
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
