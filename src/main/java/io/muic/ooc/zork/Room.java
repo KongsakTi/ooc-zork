@@ -9,33 +9,37 @@ import java.util.Map;
  * Created by gigadot on 12-Jan-17.
  */
 public class Room {
-    private final static int MAX_ITEMS = 3;
-    private List<Item> items = new ArrayList<>();
     private Monster monster = null;
+    private Item item = null;
+
+//    public Room(Monster monster, Item item) {
+//        this.monster = monster;
+//        this.item = item;
+//    }
 
     private Map<String , Room> exitMap = new HashMap<>();
 
-    public boolean addItem(Item item) {
-        if (items.size() < MAX_ITEMS) {
-            items.add(item);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public String getInfo() {
-        // print items
-        // print monster
-        // print exits
-        return "TODO";
+      // print items
+      // print monster
+      // print exits
+
+      StringBuilder sb = new StringBuilder();
+
+      if (item != null) {
+        sb.append(item.getName()).append(" ");
+      }
+
+      if (monster != null) {
+        sb.append(monster.getName()).append(" ");
+      }
+
+      sb.append(exitMap.keySet());
+
+
+      return sb.toString();
     }
 
-    public void setMonster(Monster monster) {
-        if (this.monster != null) {
-            this.monster = monster;
-        }
-    }
     public void setExit(String direction, Room exitingRoom) {
         switch(direction) {
             case "north":
@@ -45,7 +49,15 @@ public class Room {
                 exitMap.put(direction, exitingRoom);
             default:;
         }
-
     }
+
+    public Room getRoom(String direction) {
+      if (exitMap.containsKey(direction)) {
+        return exitMap.get(direction);
+      } else {
+        return null;
+      }
+    }
+
 
 }

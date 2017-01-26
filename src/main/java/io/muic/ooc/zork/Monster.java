@@ -6,8 +6,8 @@ package io.muic.ooc.zork;
 public class Monster extends Mortal{
   private int level;
 
-  public Monster(int maxHealth, int armor, int damage, int level) {
-    super(maxHealth, armor, damage);
+  public Monster(String name, int maxHealth, int armor, int damage, int level) {
+    super(name, maxHealth, armor, damage);
     this.level = level;
   }
 
