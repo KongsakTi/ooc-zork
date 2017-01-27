@@ -7,7 +7,6 @@ import java.util.List;
  * Created by gigadot on 12-Jan-17.
  */
 public class Player extends Mortal{
-  private int level;
   private int exp;
   private List<Item> items = new ArrayList<>();
   private final static int MAX_ITEMS = 3;
@@ -15,15 +14,6 @@ public class Player extends Mortal{
   public Player(String name, int maxHealth, int armor, int damage) {
     super(name, maxHealth, armor, damage);
     this.exp = 0;
-    this.level = 1;
-  }
-
-  public int getLevel() {
-    return level;
-  }
-
-  public void setLevel(int level) {
-    this.level = level;
   }
 
   public int getExp() {
@@ -32,10 +22,11 @@ public class Player extends Mortal{
 
   public void addExp(int exp) {
     int totalExp = this.getExp() + exp;
+    int maxExp = getLevel() * 100;
     this.exp = totalExp;
 
-    if (totalExp > level * 100) {
-      this.exp = totalExp - (level * 100);
+    if (totalExp > maxExp) {
+      this.exp = totalExp - maxExp;
       levelUp();
     }
   }
@@ -52,7 +43,7 @@ public class Player extends Mortal{
   public void levelUp() {
     setHealth(getHealth() + 5);
     setArmor(getArmor() + 2);
-    setDamange(getDamange() + 3);
+    setDamage(getDamage() + 3);
 
     setLevel(getLevel() + 1);
   }

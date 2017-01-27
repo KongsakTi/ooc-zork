@@ -9,15 +9,26 @@ public abstract class Mortal {
   private int maxHealth;
   private int health;
   private int armor;
-  private int damange;
+  private int damage;
+  private int level;
 
-  public Mortal(String name, int maxHealth, int armor, int damange) {
+
+  public Mortal(String name, int maxHealth, int armor, int damage) {
     this.name = name;
     this.maxHealth = maxHealth;
     this.health = maxHealth;
     this.armor = armor;
-    this.damange = damange;
+    this.damage = damage;
+    this.level = 1;
+  }
 
+  public Mortal(String name, int maxHealth, int armor, int damage, int level) {
+    this.name = name;
+    this.maxHealth = maxHealth;
+    this.health = maxHealth;
+    this.armor = armor;
+    this.damage = damage;
+    this.level = level;
   }
 
   public String getName() {
@@ -33,7 +44,7 @@ public abstract class Mortal {
   }
 
   public boolean isDeath() {
-    return 0 == this.health;
+    return 0 <= this.health;
   }
 
   public int getArmor() {
@@ -44,11 +55,19 @@ public abstract class Mortal {
     this.armor = armor;
   }
 
-  public int getDamange() {
-    return damange;
+  public int getDamage() {
+    return damage;
   }
 
-  public void setDamange(int damange) {
-    this.damange = damange;
+  public void setDamage(int damage) {
+    this.damage = damage;
+  }
+
+  public int getLevel() {
+    return level;
+  }
+
+  public void setLevel(int level) {
+    this.level = level;
   }
 }
