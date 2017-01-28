@@ -13,7 +13,7 @@ public abstract class Mortal {
   public Mortal(String name, int maxHealth, int armor, int damage) {
     this.name = name;
     this.maxHealth = maxHealth;
-    this.health = maxHealth;
+    this.health = 10;
     this.armor = armor;
     this.damage = damage;
     this.level = 1;
@@ -66,6 +66,10 @@ public abstract class Mortal {
 
   public void setLevel(int level) {
     this.level = level;
+  }
+
+  public void takeDamage(int damage) {
+    setHealth(health - damage);
   }
 
   public String getInfo() {

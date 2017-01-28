@@ -1,17 +1,21 @@
 package io.muic.ooc.zork;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
 public class GameMap {
 
-  static ItemFactory itemFactory;
-  static MonsterFactory monsterFactory;
-  static int roomNumber;
-
   static int MAX_ROOM = 10;
   static Random RANDOM = new Random();
   static String[] DIRECTIONS = {"north", "east", "west", "south"};
+
+  int roomNumber;
+  ItemFactory itemFactory;
+  MonsterFactory monsterFactory;
+
+  List<Room> rooms = new ArrayList<>();
 
   Room currentRoom;
 
@@ -51,19 +55,22 @@ public class GameMap {
     Monster monster = monsterFactory.makeMonster();
     Item item = itemFactory.makeItem();
     Room room = new Room(roomNumber++, monster, item);
+    rooms.add(room);
     return room;
   }
 
   public Room makeRooms() {
-    Room currentRoom = this.currentRoom;
 
     for (int numberOfRoom = 1; numberOfRoom < MAX_ROOM; numberOfRoom++) {
 
       Room newRoom = makeRoom();
-      String direction = getDirection();
-      newRoom.setExit(getReverseDirection(direction), currentRoom);
+      boolean success = false;
 
-      currentRoom.setExit(direction, newRoom);
+      while (!success) {
+        success = tryPlaceNewRoom(newRoom);
+        currentRoom = rooms.get(RANDOM.nextInt(rooms.size()));
+      }
+
       currentRoom = getNextRoom(currentRoom, newRoom);
     }
     return this.currentRoom;
@@ -74,5 +81,21 @@ public class GameMap {
   }
   public Room getCurrentRoom() {
     return currentRoom;
+  }
+
+  public boolean tryPlaceNewRoom(Room newRoom) {
+    int numberOfTrial = 0;
+
+    // Random for 4 times instead of loop to avoid make room pattern
+    while (numberOfTrial < 4) {
+      String direction = getDirection();
+      if (!currentRoom.hasExit(direction)) {
+        currentRoom.setExit(direction, newRoom);
+        newRoom.setExit(getReverseDirection(direction), currentRoom);
+        return true;
+      }
+      numberOfTrial++;
+    }
+    return false;
   }
 }

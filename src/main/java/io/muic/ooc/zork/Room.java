@@ -36,6 +36,9 @@ public class Room {
       return sb.toString();
     }
 
+    public boolean hasExit(String direction) {
+      return exitMap.containsKey(direction);
+    }
     public void setExit(String direction, Room exitingRoom) {
         switch(direction) {
             case "north":
@@ -46,6 +49,7 @@ public class Room {
             default:
         }
     }
+
 
     public Room getNextRoom(String direction) {
       if (exitMap.containsKey(direction)) {
@@ -58,6 +62,8 @@ public class Room {
     public Monster getMonster() {
       return monster;
     }
+
+    public void removeMonster() {monster = null;}
 
     public Item getItem() {
       return item;

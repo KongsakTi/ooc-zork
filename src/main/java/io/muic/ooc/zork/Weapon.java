@@ -15,8 +15,20 @@ public class Weapon extends Item{
     return damage;
   }
 
-  public int use() {
+  public int use(Mortal target) {
+    target.setHealth(target.getHealth() - damage);
     setNumberOfUse(getNumberOfUse() - 1);
     return damage;
+  }
+
+  @Override
+  public String getInfo() {
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append(super.getInfo().trim());
+    stringBuilder.append("[Damage: ")
+                .append(damage)
+                .append("] \n");
+
+    return stringBuilder.toString();
   }
 }

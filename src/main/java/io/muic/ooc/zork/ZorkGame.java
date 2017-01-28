@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class ZorkGame {
 
   private Player player;
-  private Room room;
   private CommandParser commandParser;
   private GameMapGenerator gameMapGenerator;
   private GameMap gameMap;
@@ -21,7 +20,7 @@ public class ZorkGame {
     boolean quit = false;
 
     player = new Player("Kogusaki",100, 10, 3);
-    room = gameMap.makeRooms();
+    gameMap.makeRooms();
 
     System.out.println("Zork: Hello, Welcome to my world.");
 

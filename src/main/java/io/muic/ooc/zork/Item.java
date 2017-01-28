@@ -25,7 +25,7 @@ public abstract class Item extends ItemFactory {
   public String getInfo() {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder.append(name)
-            .append("\n");
+            .append(": ");
     stringBuilder.append("[number of use: ")
             .append(numberOfUse)
             .append("] \n");

@@ -19,10 +19,12 @@ public class CommandParser {
         twoWords(words);
         break;
       case 3:
+        threeWords(words);
         break;
     }
 
     System.out.println(displayText);
+    displayText = null;
   }
 
   private void oneWord(String[] words) {
@@ -47,6 +49,12 @@ public class CommandParser {
         break;
       case "go":
         displayText = command.goTo(words[1]);
+    }
+  }
+
+  private void threeWords(String[] words) {
+    if ("attack".equals(words[0]) && "with".equals(words[1])) {
+      displayText = command.attackWith(words[2]);
     }
   }
 }
