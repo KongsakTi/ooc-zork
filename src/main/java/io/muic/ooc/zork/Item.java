@@ -1,8 +1,6 @@
 package io.muic.ooc.zork;
 
-/**
- * Created by gigadot on 12-Jan-17.
- */
+
 public abstract class Item extends ItemFactory {
   private int numberOfUse;
   private String name;
@@ -22,5 +20,16 @@ public abstract class Item extends ItemFactory {
 
   public void setNumberOfUse(int numberOfUse) {
     this.numberOfUse = numberOfUse;
+  }
+
+  public String getInfo() {
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append(name)
+            .append("\n");
+    stringBuilder.append("[number of use: ")
+            .append(numberOfUse)
+            .append("] \n");
+
+    return stringBuilder.toString();
   }
 }

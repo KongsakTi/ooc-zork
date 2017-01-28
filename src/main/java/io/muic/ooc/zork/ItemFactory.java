@@ -2,17 +2,26 @@ package io.muic.ooc.zork;
 
 import java.util.Random;
 
-/**
- * Created by gigadot on 12-Jan-17.
- */
-public class ItemFactory {
-  static Random random = new Random();
 
-  public Item makeItem(String itemType) {
+public class ItemFactory {
+  static int itemNumber = 0;
+  static Random random = new Random();
+  static String[] items = {"Potion", "Weapon"};
+
+  public Item makeItem(int itemType) {
+    // +1 to prevent 0 number of use
+    int quantity = random.nextInt(10) + 1;
+    int quality = random.nextInt(10);
+
     switch (itemType) {
-      case "Potion": return new Potion("Potion", random.nextInt(10), 10 * random.nextInt(10));
-      case "Weapon": return new Weapon("Sword", random.nextInt(10), 10 * random.nextInt(10));
+      case 0: return new Potion("Potion-" + itemNumber++, quantity, quality);
+      case 1: return new Weapon("Sword-" + itemNumber++, quantity, quality);
       default: return null;
     }
+  }
+
+  public Item makeItem() {
+    int itemType = random.nextInt(items.length + 2);
+    return makeItem(itemType);
   }
 }

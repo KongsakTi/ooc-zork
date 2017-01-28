@@ -2,42 +2,44 @@ package io.muic.ooc.zork;
 
 import java.util.Scanner;
 
-/**
- * Created by gigadot on 12-Jan-17.
- */
+
 public class ZorkGame {
 
-    private Room currentRoom;
-    private Player player;
+  private Player player;
+  private Room room;
+  private CommandParser commandParser;
+  private GameMapGenerator gameMapGenerator;
+  private GameMap gameMap;
 
-    public void start() {
-        Scanner scanner = new Scanner(System.in);
-        boolean quit = false;
-        System.out.println("Zork: Hello, Welcome to my world.");
-
-        player = new Player("Kogusaki",100, 10, 3);
-        currentRoom = new Room();
-        currentRoom.setExit("north", new Room());
-
-        while (!quit) {
-            System.out.print("You: ");
-            String input = scanner.nextLine();
+  public void start() {
+    Scanner scanner = new Scanner(System.in);
+    commandParser = new CommandParser();
+    gameMapGenerator = new GameMapGenerator();
+    gameMap = gameMapGenerator.makeMap();
 
 
+    boolean quit = false;
 
+    player = new Player("Kogusaki",100, 10, 3);
+    room = gameMap.makeRooms();
 
-            quit = input.equals("quit");
-            if (!quit) {
-                System.out.println("Zork: " + input);
-            }
-        }
+    System.out.println("Zork: Hello, Welcome to my world.");
+
+    while (!quit) {
+      System.out.print("You: ");
+      String input = scanner.nextLine();
+
+      quit = input.equals("quit");
+      if (!quit) {
+        commandParser.parseCommand(input, gameMap, player);
+      } else {
+        return;
+      }
     }
+  }
 
-    public void walk() {
-
-    }
-
-
-
+//  public void walk() {
+//
+//  }
 
 }

@@ -1,8 +1,5 @@
 package io.muic.ooc.zork;
 
-/**
- * Created by Sam on 1/26/17.
- */
 public abstract class Mortal {
   private String name;
 
@@ -69,5 +66,26 @@ public abstract class Mortal {
 
   public void setLevel(int level) {
     this.level = level;
+  }
+
+  public String getInfo() {
+    StringBuilder stringBuilder = new StringBuilder();
+
+    stringBuilder.append(this.name)
+            .append(" \n");
+    stringBuilder.append("[health: ")
+            .append(this.health)
+            .append("] \n");
+    stringBuilder.append("[armor: ")
+            .append(this.armor)
+            .append("] \n");
+    stringBuilder.append("[damage: ")
+            .append(this.damage)
+            .append("] \n");
+    stringBuilder.append("[level: ")
+            .append(this.level)
+            .append("] \n");
+
+    return stringBuilder.toString();
   }
 }

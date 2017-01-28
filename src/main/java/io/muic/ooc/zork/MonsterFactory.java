@@ -2,9 +2,7 @@ package io.muic.ooc.zork;
 
 import java.util.Random;
 
-/**
- * Created by gigadot on 12-Jan-17.
- */
+
 public class MonsterFactory {
   static Random random = new Random();
   static int level;
@@ -13,10 +11,12 @@ public class MonsterFactory {
     this.level = level;
   }
 
-  public Monster makeMonster(String itemType) {
-    switch (itemType) {
-      case "Monster": return new Monster("Monster", random.nextInt(5) * level, random.nextInt(2) * level, random.nextInt(3) * level, level);
-      default: return null;
-    }
+  public Monster makeMonster() {
+    //  +1 to prevent 0 health
+    int maxHealth = random.nextInt(5) * level + 1;
+    int armor = random.nextInt(2) * level;
+    int damage = random.nextInt(3) * level;
+
+    return new Monster("Monster", maxHealth, armor, damage, level);
   }
 }
