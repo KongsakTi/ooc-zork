@@ -47,8 +47,7 @@ public class Command {
   }
 
   public String useItem(String itemName) {
-    int heal = player.getBackpack().usePotion(itemName, player);
-    if (-1 != heal) {
+    if (player.getBackpack().usePotion(itemName, player)) {
       return "Wow this shit is good";
     }
     return "You aint got that in your backpack bro";
@@ -66,15 +65,17 @@ public class Command {
 
   public String attackWith(String weaponName) {
     Monster monster = room.getMonster();
-    int damage = player.getBackpack().useWeapon(weaponName, monster);
-    if (-1 != damage) {
-      StringBuilder stringBuilder = new StringBuilder();
-      stringBuilder.append("Take is f*cker");
+    if (null == monster) {
+      return "Are you nut? there is no one else here";
+    }
 
-      monster.takeDamage(damage);
+    if (player.getBackpack().useWeapon(weaponName, monster)) {
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append("Take is f*cker\n");
+
       if (monster.isDeath()) {
-        stringBuilder.append(room.getMonster().getName());
-        stringBuilder.append("\nGaaaaaahh !!");
+        stringBuilder.append(room.getMonster().getName())
+                      .append(": Gaaaaaahh !!\n");
 
         room.removeMonster();
         player.addExp(monster.dropLoop());

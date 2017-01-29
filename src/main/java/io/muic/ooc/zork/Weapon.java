@@ -15,10 +15,10 @@ public class Weapon extends Item{
     return damage;
   }
 
-  public int use(Mortal target) {
-    target.setHealth(target.getHealth() - damage);
+  public boolean use(Mortal target) {
+    target.takeDamage(damage);
     setNumberOfUse(getNumberOfUse() - 1);
-    return damage;
+    return true;
   }
 
   @Override

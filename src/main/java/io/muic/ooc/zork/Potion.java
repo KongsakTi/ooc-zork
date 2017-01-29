@@ -12,10 +12,10 @@ public class Potion extends Item {
     return heal;
   }
 
-  public int use(Mortal target) {
+  public boolean use(Mortal target) {
     target.setHealth(target.getHealth() + heal);
     setNumberOfUse(getNumberOfUse() - 1);
-    return heal;
+    return true;
   }
 
   @Override

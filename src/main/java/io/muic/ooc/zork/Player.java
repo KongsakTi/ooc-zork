@@ -37,6 +37,11 @@ public class Player extends Mortal{
     maxExp = getLevel() * 15;
   }
 
+  public boolean xiaolinPunch(Mortal target) {
+    target.takeDamage(this.getDamage());
+    return true;
+  }
+
   @Override
   public String getInfo() {
     StringBuilder stringBuilder = new StringBuilder();
@@ -79,31 +84,34 @@ public class Player extends Mortal{
       return false;
     }
 
-    private int useItem(String itemName, String type, Mortal target) {
+    private boolean useItem(String itemName, String type, Mortal target) {
       if (items.containsKey(itemName)) {
         Item item = items.get(itemName);
-        int quality = -1;
+        boolean used = false;
 
         if (item instanceof Potion && type.equals("Potion")) {
-          quality =  ((Potion) item).use(target);
+          used =  ((Potion) item).use(target);
         } else if (item instanceof Weapon && type.equals("Weapon")) {
-          quality =  ((Weapon) item).use(target);
+          used =  ((Weapon) item).use(target);
         }
 
         if (item.isUseUpped()) {
           removeItem(itemName);
         }
 
-        return quality;
+        return used;
       }
-      return -1;
+      return false;
     }
 
-    public int usePotion(String potionName, Mortal target) {
+    public boolean usePotion(String potionName, Mortal target) {
       return useItem(potionName, "Potion", target);
     }
 
-    public int useWeapon(String weaponName, Mortal target) {
+    public boolean useWeapon(String weaponName, Mortal target) {
+      if (weaponName.equals("fist")) {
+        return xiaolinPunch(target);
+      }
       return useItem(weaponName, "Weapon", target);
     }
 
