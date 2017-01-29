@@ -36,9 +36,4 @@ public class ZorkGame {
       }
     }
   }
-
-//  public void walk() {
-//
-//  }
-
 }

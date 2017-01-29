@@ -72,7 +72,7 @@ public class Command {
       monster.takeDamage(damage);
       if (monster.isDeath()) {
         stringBuilder.append(room.getMonster().getName());
-        stringBuilder.append("Gaaaaaahh !!");
+        stringBuilder.append("\nGaaaaaahh !!");
 
         room.removeMonster();
         player.addExp(monster.dropLoop());
