@@ -18,6 +18,10 @@ public abstract class Item extends ItemFactory {
     return numberOfUse;
   }
 
+  public boolean isUseUpped() {
+    return numberOfUse <= 0;
+  }
+
   public void setNumberOfUse(int numberOfUse) {
     this.numberOfUse = numberOfUse;
   }

@@ -66,12 +66,18 @@ public class Command {
     Monster monster = room.getMonster();
     int damage = player.getBackpack().useWeapon(weaponName, monster);
     if (-1 != damage) {
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append("Take is f*cker");
+
       monster.takeDamage(damage);
       if (monster.isDeath()) {
+        stringBuilder.append(room.getMonster().getName());
+        stringBuilder.append("Gaaaaaahh !!");
+
         room.removeMonster();
         player.addExp(monster.dropLoop());
       }
-      return "Take is f*cker";
+      return stringBuilder.toString();
     }
     return "Imaginary weapon aint gonna do shit";
   }
