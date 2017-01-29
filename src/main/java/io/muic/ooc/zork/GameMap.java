@@ -7,17 +7,18 @@ import java.util.Random;
 
 public class GameMap {
 
-  static int MAX_ROOM = 10;
-  static Random RANDOM = new Random();
-  static String[] DIRECTIONS = {"north", "east", "west", "south"};
+  private static int MAX_ROOM = 10;
+  private static Random RANDOM = new Random();
+  private static String[] DIRECTIONS = {"north", "east", "west", "south"};
 
-  int roomNumber;
-  ItemFactory itemFactory;
-  MonsterFactory monsterFactory;
+  private int roomNumber;
+  private ItemFactory itemFactory;
+  private MonsterFactory monsterFactory;
 
-  List<Room> rooms = new ArrayList<>();
+  private List<Room> rooms = new ArrayList<>();
 
-  Room currentRoom;
+  private Room currentRoom;
+  private int numberOfMonster;
 
   public GameMap(MonsterFactory monsterFactory, ItemFactory itemFactory) {
     this.monsterFactory = monsterFactory;
@@ -25,6 +26,7 @@ public class GameMap {
 
     roomNumber = 1;
     currentRoom = makeRoom();
+    numberOfMonster = 0;
   }
 
   private Room getNextRoom(Room currentRoom, Room newRoom) {
@@ -56,6 +58,7 @@ public class GameMap {
     Item item = itemFactory.makeItem();
     Room room = new Room(roomNumber++, monster, item);
     rooms.add(room);
+    numberOfMonster += (null != monster) ? 1 : 0;
     return room;
   }
 
@@ -97,5 +100,21 @@ public class GameMap {
       numberOfTrial++;
     }
     return false;
+  }
+
+  public void reduceNumberOfMonster(int numberOfMonsterDie) {
+    numberOfMonster -= numberOfMonsterDie;
+  }
+  public int getNumberOfMonster() {
+    return numberOfMonster;
+  }
+
+  public String getInfo() {
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("Map:\n")
+                .append("[Number of Monster left in this map: ")
+                .append(numberOfMonster)
+                .append("]\n");
+    return stringBuilder.toString();
   }
 }

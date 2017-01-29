@@ -18,10 +18,12 @@ public class Command {
 
   public String getInfo() {
     StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append("--------------------\n");
-    stringBuilder.append(player.getInfo());
-    stringBuilder.append("--------------------\n");
-    stringBuilder.append(room.getInfo());
+    stringBuilder.append("--------------------\n")
+                .append(player.getInfo())
+                .append("--------------------\n")
+                .append(room.getInfo())
+                .append("--------------------\n")
+                .append(gameMap.getInfo());
     return stringBuilder.toString();
   }
 
@@ -76,6 +78,7 @@ public class Command {
 
         room.removeMonster();
         player.addExp(monster.dropLoop());
+        gameMap.reduceNumberOfMonster(1);
       }
       return stringBuilder.toString();
     }

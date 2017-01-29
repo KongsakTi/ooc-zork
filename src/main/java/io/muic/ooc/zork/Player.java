@@ -81,8 +81,6 @@ public class Player extends Mortal{
 
     private int useItem(String itemName, String type, Mortal target) {
       if (items.containsKey(itemName)) {
-        // TODO: Using item, reduce #use, only allow potions
-
         Item item = items.get(itemName);
         int quality = -1;
 

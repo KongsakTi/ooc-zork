@@ -4,9 +4,9 @@ import java.util.Random;
 
 
 public class ItemFactory {
-  static int ITEM_DROP_RATE = 0; // 0 => Every room will have 1 item
-  static int ITEM_NUMBER = 0;
-  static String[] ITEMS = {"Potion", "Weapon"};
+  private static int ITEM_DROP_RATE = 0; // 0 => Every room will have 1 item
+  private static int ITEM_NUMBER = 0;
+  private static String[] ITEMS = {"Potion", "Weapon"};
 
   static Random RAMDOM = new Random();
 

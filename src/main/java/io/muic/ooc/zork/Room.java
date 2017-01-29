@@ -30,8 +30,9 @@ public class Room {
       if (monster != null) {
         sb.append(monster.getInfo());
       }
-      sb.append("Map: \n");
-      sb.append(exitMap.keySet());
+      sb.append("Connected Room: \n")
+        .append(exitMap.keySet())
+        .append("\n");
 
       return sb.toString();
     }

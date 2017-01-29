@@ -6,9 +6,9 @@ import java.util.Random;
 
 
 public class MonsterFactory {
-  static Random random = new Random();
-  static int level;
-  static List<String> NAMES; {
+  private static Random random = new Random();
+  private static int level;
+  private static List<String> NAMES; {
     NAMES = new ArrayList<>();
     NAMES.add("Aamon");
     NAMES.add("Chemosh");
