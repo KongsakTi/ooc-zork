@@ -84,7 +84,7 @@ public class Player extends Mortal{
         // TODO: Using item, reduce #use, only allow potions
 
         Item item = items.get(itemName);
-        int quality = 0;
+        int quality = -1;
 
         if (item instanceof Potion && type.equals("Potion")) {
           quality =  ((Potion) item).use(target);
