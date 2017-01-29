@@ -13,7 +13,7 @@ public class Potion extends Item {
   }
 
   public boolean use(Mortal target) {
-    target.setHealth(target.getHealth() + heal);
+    target.heal(heal);
     setNumberOfUse(getNumberOfUse() - 1);
     return true;
   }

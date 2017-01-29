@@ -13,7 +13,7 @@ public abstract class Mortal {
   public Mortal(String name, int maxHealth, int armor, int damage) {
     this.name = name;
     this.maxHealth = maxHealth;
-    this.health = 10;
+    this.health = maxHealth;
     this.armor = armor;
     this.damage = damage;
     this.level = 1;
@@ -37,7 +37,7 @@ public abstract class Mortal {
   }
 
   public void setHealth(int health) {
-    this.health = (health < 0) ? 0 : (health > maxHealth) ? maxHealth : health;
+    this.health = health;
   }
 
   public boolean isDeath() {
@@ -70,6 +70,11 @@ public abstract class Mortal {
 
   public void takeDamage(int damage) {
     setHealth(health - damage);
+  }
+
+  public void heal(int healAmount) {
+    int healedHealth = health + healAmount;
+    health = (healedHealth > maxHealth) ? maxHealth : healedHealth;
   }
 
   public String getInfo() {
