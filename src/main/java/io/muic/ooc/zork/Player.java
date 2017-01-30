@@ -6,13 +6,14 @@ import java.util.HashMap;
 public class Player extends Mortal{
   private int exp;
   private int maxExp;
-  private Backpack backpack = new Backpack();
+  private Backpack backpack;
 
 
   public Player(String name, int maxHealth, int armor, int damage) {
     super(name, maxHealth, armor, damage);
     this.exp = 0;
-    maxExp = 10;
+    maxExp = 15;
+    backpack = new Backpack();
   }
 
   public int getExp() {
@@ -22,7 +23,7 @@ public class Player extends Mortal{
   public void addExp(int exp) {
     this.exp += exp;
 
-    while (this.exp > maxExp) {
+    while (this.exp >= maxExp) {
       this.exp -= maxExp;
       levelUp();
     }

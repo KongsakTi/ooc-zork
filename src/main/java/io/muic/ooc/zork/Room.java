@@ -20,7 +20,7 @@ public class Room {
     public String getInfo() {
       StringBuilder sb = new StringBuilder();
 
-      sb.append("Room: ")
+      sb.append("java.Room: ")
         .append(roomNumber)
         .append("\n");
 
@@ -30,7 +30,7 @@ public class Room {
       if (monster != null) {
         sb.append(monster.getInfo());
       }
-      sb.append("Connected Room: \n")
+      sb.append("Exits: \n")
         .append(exitMap.keySet())
         .append("\n");
 
@@ -70,8 +70,8 @@ public class Room {
       return item;
     }
 
-    public void setItem(Item item) {
-      this.item = item;
+    public void removeItem() {
+      item = null;
     }
 
     public int getRoomNumber() {

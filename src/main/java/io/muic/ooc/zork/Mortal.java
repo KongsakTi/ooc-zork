@@ -9,7 +9,6 @@ public abstract class Mortal {
   private int damage;
   private int level;
 
-
   public Mortal(String name, int maxHealth, int armor, int damage) {
     this.name = name;
     this.maxHealth = maxHealth;
@@ -69,7 +68,12 @@ public abstract class Mortal {
   }
 
   public void takeDamage(int damage) {
-    setHealth(health - damage);
+    setHealth(health - reduceDamage(damage));
+  }
+
+  private int reduceDamage(int damage) {
+    int recudedDamage = damage - armor;
+    return (recudedDamage <= 0) ? 0 : recudedDamage;
   }
 
   public void heal(int healAmount) {

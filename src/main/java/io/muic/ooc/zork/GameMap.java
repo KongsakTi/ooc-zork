@@ -7,18 +7,18 @@ import java.util.Random;
 
 public class GameMap {
 
-  private static int MAX_ROOM = 10;
-  private static Random RANDOM = new Random();
-  private static String[] DIRECTIONS = {"north", "east", "west", "south"};
+  private static final int MAX_ROOM = 10;
+  private static final Random RANDOM = new Random();
+  private static final String[] DIRECTIONS = {"north", "east", "west", "south"};
 
-  private int roomNumber;
-  private ItemFactory itemFactory;
-  private MonsterFactory monsterFactory;
+  private final ItemFactory itemFactory;
+  private final MonsterFactory monsterFactory;
 
   private List<Room> rooms = new ArrayList<>();
 
   private Room currentRoom;
   private int numberOfMonster;
+  private int roomNumber;
 
   public GameMap(MonsterFactory monsterFactory, ItemFactory itemFactory) {
     this.monsterFactory = monsterFactory;

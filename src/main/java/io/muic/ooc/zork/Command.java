@@ -9,11 +9,11 @@ public class Command {
   private Room room;
   private Player player;
 
-  public Command(GameMap gameMap, Player player) {
+
+  public void setup(GameMap gameMap, Player player) {
     this.gameMap = gameMap;
     this.player = player;
     room = gameMap.getCurrentRoom();
-
   }
 
   public String getInfo() {
@@ -31,7 +31,7 @@ public class Command {
     Item item = room.getItem();
     if (item != null && item.getName().equals(itemName)) {
       if (player.getBackpack().addItem(item)) {
-        room.setItem(null);
+        room.removeItem();
         return player.getName() + " aquire : " + itemName;
       }
       return "No room left in your backpack";
@@ -58,7 +58,7 @@ public class Command {
 
     if (null != nextRoom) {
       gameMap.setCurrentRoom(nextRoom);
-      return "Going " + direction + " to Room: " + nextRoom.getRoomNumber();
+      return "Going " + direction + " to java.Room: " + nextRoom.getRoomNumber();
     }
     return "Running into a wall isn't a good idea you know ~";
   }
@@ -72,15 +72,19 @@ public class Command {
     if (player.getBackpack().useWeapon(weaponName, monster)) {
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append("Take is f*cker\n");
-
+      stringBuilder.append(room.getMonster().getName());
       if (monster.isDeath()) {
-        stringBuilder.append(room.getMonster().getName())
-                      .append(": Gaaaaaahh !!\n");
+        stringBuilder.append(": Gaaaaaahh *die!!\n");
 
         room.removeMonster();
         player.addExp(monster.dropLoop());
         gameMap.reduceNumberOfMonster(1);
+      } else {
+        stringBuilder.append(": Waaaaahh !!");
+        monster.attack(player);
       }
+
+
       return stringBuilder.toString();
     }
     return "Imaginary weapon aint gonna do shit";
