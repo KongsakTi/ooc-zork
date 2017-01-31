@@ -1,4 +1,4 @@
-package java.Item;
+package item;
 
 import io.muic.ooc.zork.Player;
 import io.muic.ooc.zork.Potion;

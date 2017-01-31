@@ -1,4 +1,4 @@
-package java.Mortal;
+package mortal;
 
 import io.muic.ooc.zork.Monster;
 import io.muic.ooc.zork.Player;

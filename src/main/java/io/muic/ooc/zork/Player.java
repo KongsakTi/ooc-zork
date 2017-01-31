@@ -30,7 +30,8 @@ public class Player extends Mortal{
   }
 
   public void levelUp() {
-    setHealth(getHealth() + 5);
+    setMaxHealth(getMaxHealth() + 5);
+    setHealth(getMaxHealth());
     setArmor(getArmor() + 2);
     setDamage(getDamage() + 3);
     setLevel(getLevel() + 1);
@@ -120,9 +121,9 @@ public class Player extends Mortal{
       StringBuilder stringBuilder = new StringBuilder();
 
       for (Item item: items.values()) {
-        stringBuilder.append(item.getInfo());
+        stringBuilder.append(item.getInfo())
         // For beautiful UI
-        stringBuilder.append("          ");
+                    .append("          ");
       }
       return stringBuilder.toString().trim();
     }

@@ -28,11 +28,13 @@ public abstract class Item extends ItemFactory {
 
   public String getInfo() {
     StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append(name)
-            .append(": ");
-    stringBuilder.append("[number of use: ")
-            .append(numberOfUse)
-            .append("] \n");
+    stringBuilder
+        .append("[name: ")
+        .append(name)
+        .append("] ")
+        .append("[number of use: ")
+        .append(numberOfUse)
+        .append("] \n");
 
     return stringBuilder.toString();
   }

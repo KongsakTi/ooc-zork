@@ -7,10 +7,11 @@ import java.util.Random;
 
 public class GameMap {
 
-  private static final int MAX_ROOM = 10;
+  private static final int MAX_ROOM = 2;
   private static final Random RANDOM = new Random();
   private static final String[] DIRECTIONS = {"north", "east", "west", "south"};
 
+  private final int level;
   private final ItemFactory itemFactory;
   private final MonsterFactory monsterFactory;
 
@@ -20,13 +21,15 @@ public class GameMap {
   private int numberOfMonster;
   private int roomNumber;
 
-  public GameMap(MonsterFactory monsterFactory, ItemFactory itemFactory) {
+  public GameMap(int level, MonsterFactory monsterFactory, ItemFactory itemFactory) {
+    this.level = level;
     this.monsterFactory = monsterFactory;
     this.itemFactory = itemFactory;
 
+    numberOfMonster = 0;
+
     roomNumber = 1;
     currentRoom = makeRoom();
-    numberOfMonster = 0;
   }
 
   private Room getNextRoom(Room currentRoom, Room newRoom) {
@@ -53,7 +56,7 @@ public class GameMap {
     }
   }
 
-  public Room makeRoom() {
+  private Room makeRoom() {
     Monster monster = monsterFactory.makeMonster();
     Item item = itemFactory.makeItem();
     Room room = new Room(roomNumber++, monster, item);
@@ -108,10 +111,13 @@ public class GameMap {
   public int getNumberOfMonster() {
     return numberOfMonster;
   }
+  public int getLevel() {return  level;}
 
   public String getInfo() {
     StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append("Map:\n")
+    stringBuilder.append("Map: ")
+                .append(level)
+                .append(" \n")
                 .append("[Number of Monster left in this map: ")
                 .append(numberOfMonster)
                 .append("]\n");

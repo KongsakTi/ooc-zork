@@ -1,4 +1,4 @@
-package java.Item;
+package item;
 
 import io.muic.ooc.zork.Monster;
 import io.muic.ooc.zork.Weapon;

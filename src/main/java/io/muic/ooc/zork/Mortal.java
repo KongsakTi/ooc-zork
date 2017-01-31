@@ -31,6 +31,14 @@ public abstract class Mortal {
     return name;
   }
 
+  public int getMaxHealth() {
+    return maxHealth;
+  }
+
+  public void setMaxHealth(int maxHealth) {
+    this.maxHealth = maxHealth;
+  }
+
   public int getHealth() {
     return health;
   }
@@ -39,8 +47,10 @@ public abstract class Mortal {
     this.health = health;
   }
 
+
+
   public boolean isDeath() {
-    return 0 <= this.health;
+    return 0 >= this.health;
   }
 
   public int getArmor() {

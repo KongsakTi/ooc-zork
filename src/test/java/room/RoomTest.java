@@ -1,4 +1,4 @@
-package java.Room;
+package room;
 
 import io.muic.ooc.zork.Monster;
 import io.muic.ooc.zork.Potion;
@@ -55,7 +55,8 @@ public class RoomTest {
 
   @Test
   public void getRoomNumber() throws Exception {
-
+    Room room = new Room(ROOM_NUMBER, MONSTER, POTION);
+    assertEquals(ROOM_NUMBER, room.getRoomNumber());
   }
 
 }
