@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class GameMap {
 
-  private static final int MAX_ROOM = 2;
+  private static final int MAX_ROOM = 10;
   private static final Random RANDOM = new Random();
   private static final String[] DIRECTIONS = {"north", "east", "west", "south"};
 

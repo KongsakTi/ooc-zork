@@ -23,9 +23,9 @@ public class MonsterFactory {
 
   public Monster makeMonster() {
     //  +1 to prevent 0 health
-    int maxHealth = (random.nextInt(5) + 1) * level;
+    int maxHealth = (random.nextInt(5) + 10) * level;
     int armor = random.nextInt(2) * level;
-    int damage = random.nextInt(3) * level;
+    int damage = (random.nextInt(3) + 3) * level;
     String name = NAMES.get(random.nextInt(NAMES.size()));
 
     return new Monster(name, maxHealth, armor, damage, level);

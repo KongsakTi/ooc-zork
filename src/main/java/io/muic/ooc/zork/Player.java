@@ -33,7 +33,7 @@ public class Player extends Mortal{
     setMaxHealth(getMaxHealth() + 5);
     setHealth(getMaxHealth());
     setArmor(getArmor() + 2);
-    setDamage(getDamage() + 3);
+    setDamage(getDamage() + 1);
     setLevel(getLevel() + 1);
 
     maxExp = getLevel() * 15;
